@@ -30,8 +30,10 @@ import com.example.instagram.ui.login.LoginViewModel;
 import com.example.instagram.ui.login.LoginViewModelFactory;
 import com.example.instagram.databinding.ActivityLoginBinding;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -143,13 +145,38 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e != null){
                     // TODO: Better error handling
-                    Toast.makeText(LoginActivity.this, "Issue with Login!", Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "Issue with login", e);
+                    if (e.getCode() == ParseException.OBJECT_NOT_FOUND) {
+                        signupUser(username, password);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Issue with Login!", Toast.LENGTH_LONG).show();
+                        Log.e(TAG, "Issue with login: " + String.valueOf(e.getCode()), e);
+                    }
                     return;
                 }
 
                 goMainActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void signupUser(String username, String password){
+
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null){
+                    loginUser(username, password);
+                    Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                    goMainActivity();
+                } else {
+                    Toast.makeText(LoginActivity.this, "The password does not match this username", Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Issue with signup!", e);
+                }
             }
         });
     }
