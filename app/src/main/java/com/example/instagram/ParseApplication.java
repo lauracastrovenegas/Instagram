@@ -8,6 +8,10 @@ import com.parse.ParseObject;
 
 public class ParseApplication extends Application {
 
+    public static final String APPLICATION_ID = "3MxyCgdRainx3U26MkJidm83EOQnBvdTwCd4jvB6";
+    public static final String CLIENT_KEY = "bx1mVy4MGlcwKEzPnAqSjObjyRWkjxNg4Y9B2ECH";
+    public static final String SERVER = "https://parseapi.back4app.com";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -15,9 +19,9 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Post.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("3MxyCgdRainx3U26MkJidm83EOQnBvdTwCd4jvB6")
-                .clientKey("bx1mVy4MGlcwKEzPnAqSjObjyRWkjxNg4Y9B2ECH")
-                .server("https://parseapi.back4app.com")
+                .applicationId(APPLICATION_ID)
+                .clientKey(CLIENT_KEY)
+                .server(SERVER)
                 .build()
         );
     }

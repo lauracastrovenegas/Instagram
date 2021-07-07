@@ -24,6 +24,9 @@ import java.util.List;
 public class TimelineActivity extends AppCompatActivity {
 
     public static final String TAG = "TimelineActivity";
+    public static final int POST_LIMIT = 20;
+    public static final String DESCENDING_ORDER_KEY = "createdAt";
+    public static final String QUERY_ERROR = "Error getting posts";
 
     RecyclerView rvTimeline;
     PostAdapter adapter;
@@ -50,14 +53,14 @@ public class TimelineActivity extends AppCompatActivity {
     private void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.setLimit(20);
-        query.addDescendingOrder("createdAt");
+        query.setLimit(POST_LIMIT);
+        query.addDescendingOrder(DESCENDING_ORDER_KEY);
         query.findInBackground(new FindCallback<Post>() {
             
             @Override
             public void done(List<Post> allPosts, ParseException e) {
                 if (e != null){
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, QUERY_ERROR, e);
                     return;
                 }
 

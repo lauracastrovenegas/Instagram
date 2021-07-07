@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
     
     public static final String TAG = "MainActivity";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public static final String EMPTY_DESCRIPTION = "Description cannot be empty";
+    public static final String NO_IMAGE = "There is no image!";
+    public static final String SUCCESS_MSG = "Success!";
+    public static final String FAILURE_MSG = "Failure: ";
+    public static final String CAMERA_FAILURE = "Picture wasn't taken!";
+    public static final String SAVING_ERROR = "Error while saving";
+
     private EditText etDescription;
     private Button btnCapture;
     private ImageView ivPostImage;
@@ -60,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, EMPTY_DESCRIPTION, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (photoFile == null || ivPostImage.getDrawable() == null){
-                    Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, NO_IMAGE, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -106,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, CAMERA_FAILURE, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -120,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
-            Log.d(TAG, "failed to create directory");
+            Log.d(TAG, FAILURE_MSG);
         }
 
         // Return the file target for the photo based on filename
@@ -136,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null){
-                    Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(MainActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, SAVING_ERROR, e);
+                    Toast.makeText(MainActivity.this, SAVING_ERROR, Toast.LENGTH_SHORT).show();
                 }
 
-                Log.i(TAG, "Post save was successful!");
+                Log.i(TAG, SUCCESS_MSG);
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
             }
