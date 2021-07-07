@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.instagram.models.Post;
-import com.example.instagram.ui.login.LoginActivity;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -27,7 +26,7 @@ import com.parse.SaveCallback;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity {
+public class ComposeActivity extends AppCompatActivity {
     
     public static final String TAG = "MainActivity";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_compose);
         
         etDescription = findViewById(R.id.etDescription);
         btnCapture = findViewById(R.id.btnCapture);
@@ -67,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
-                    Toast.makeText(MainActivity.this, EMPTY_DESCRIPTION, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, EMPTY_DESCRIPTION, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (photoFile == null || ivPostImage.getDrawable() == null){
-                    Toast.makeText(MainActivity.this, NO_IMAGE, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, NO_IMAGE, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -87,12 +86,13 @@ public class MainActivity extends AppCompatActivity {
     private void launchCamera() {
         // create intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //intent.setPackage("name of app here (look in Manifest)"); specify which app takes care of intent
 
         // Create a File reference to access to future access
         photoFile = getPhotoFileUri(photoFileName);
 
         // wrap file object into a content provider
-        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         if (intent.resolveActivity(getPackageManager()) != null){
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e != null){
                     Log.e(TAG, SAVING_ERROR, e);
-                    Toast.makeText(MainActivity.this, SAVING_ERROR, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, SAVING_ERROR, Toast.LENGTH_SHORT).show();
                 }
 
                 Log.i(TAG, SUCCESS_MSG);
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onHome(View view){
         finish();
-        Intent i = new Intent(MainActivity.this, TimelineActivity.class);
+        Intent i = new Intent(ComposeActivity.this, TimelineActivity.class);
         startActivity(i);
     }
 }
