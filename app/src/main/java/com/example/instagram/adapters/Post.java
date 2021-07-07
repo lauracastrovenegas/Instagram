@@ -1,4 +1,4 @@
-package models;
+package com.example.instagram.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
@@ -11,6 +11,7 @@ public class Post extends ParseObject {
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
+
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
@@ -36,3 +37,4 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 }
+

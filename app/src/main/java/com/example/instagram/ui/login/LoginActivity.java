@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.instagram.MainActivity;
 import com.example.instagram.R;
+import com.example.instagram.TimelineActivity;
 import com.example.instagram.ui.login.LoginViewModel;
 import com.example.instagram.ui.login.LoginViewModelFactory;
 import com.example.instagram.databinding.ActivityLoginBinding;
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, TimelineActivity.class);
         startActivity(i);
         finish();
     }
@@ -191,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-        //ParseUser.logInInBackground(model.)
+        //ParseUser.logInInBackground(com.example.instagram.model.)
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
