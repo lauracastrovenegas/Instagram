@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btnCapture);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
-        
-        //queryPosts();
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,10 +147,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onLogout(View view){
-        ParseUser.logOut();
+    public void onHome(View view){
         finish();
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        Intent i = new Intent(MainActivity.this, TimelineActivity.class);
         startActivity(i);
     }
 }
