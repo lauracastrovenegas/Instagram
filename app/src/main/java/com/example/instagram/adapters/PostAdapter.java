@@ -86,6 +86,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView ivImage;
         TextView tvUsername2;
         ImageView ivProfilePicture;
+        TextView tvCreatedAt;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -95,12 +96,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivImage = itemView.findViewById(R.id.ivImage);
             ivProfilePicture = itemView.findViewById(R.id.ivProfilePicture);
+            tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
         }
 
         public void bind(Post post) {
             tvUsername.setText(post.getUser().getUsername());
             tvUsername2.setText(post.getUser().getUsername());
             tvDescription.setText(post.getDescription());
+            tvCreatedAt.setText(post.getCreatedAtDate(post));
 
             ParseFile image = post.getImage();
             int screenWidth = DeviceDimensionsHelper.getDisplayWidth(context);
