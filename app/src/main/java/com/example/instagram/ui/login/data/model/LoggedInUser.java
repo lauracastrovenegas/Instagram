@@ -1,4 +1,4 @@
-package com.example.instagram.data.model;
+package com.example.instagram.ui.login.data.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.example.instagram.data.LoginDataSource;
-import com.example.instagram.data.LoginRepository;
+import com.example.instagram.ui.login.data.LoginDataSource;
+import com.example.instagram.ui.login.data.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

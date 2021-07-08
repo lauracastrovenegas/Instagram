@@ -12,7 +12,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.instagram.adapters.PostAdapter;
 import com.example.instagram.models.Post;
-import com.example.instagram.ui.login.LoginActivity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

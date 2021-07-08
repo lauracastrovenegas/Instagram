@@ -1,9 +1,6 @@
 package com.example.instagram.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,30 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.example.instagram.DeviceDimensionsHelper;
 import com.example.instagram.R;
+import com.example.instagram.DeviceDimensionsHelper;
 import com.example.instagram.models.Post;
 import com.parse.ParseFile;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Collection;
 import java.util.List;
-
-import static java.util.Collections.min;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -107,8 +91,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             ParseFile image = post.getImage();
             int screenWidth = DeviceDimensionsHelper.getDisplayWidth(context);
-
-            Log.i(TAG, String.valueOf(screenWidth));
 
             if (image != null) {
                 try {

@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.example.instagram.data.LoginRepository;
-import com.example.instagram.data.Result;
-import com.example.instagram.data.model.LoggedInUser;
+import com.example.instagram.ui.login.data.LoginRepository;
+import com.example.instagram.ui.login.data.Result;
+import com.example.instagram.ui.login.data.model.LoggedInUser;
 import com.example.instagram.R;
 
 public class LoginViewModel extends ViewModel {

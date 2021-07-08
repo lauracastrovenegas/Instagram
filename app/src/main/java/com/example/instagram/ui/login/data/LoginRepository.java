@@ -1,6 +1,6 @@
-package com.example.instagram.data;
+package com.example.instagram.ui.login.data;
 
-import com.example.instagram.data.model.LoggedInUser;
+import com.example.instagram.ui.login.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

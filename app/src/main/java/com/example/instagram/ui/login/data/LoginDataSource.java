@@ -1,6 +1,6 @@
-package com.example.instagram.data;
+package com.example.instagram.ui.login.data;
 
-import com.example.instagram.data.model.LoggedInUser;
+import com.example.instagram.ui.login.data.model.LoggedInUser;
 
 import java.io.IOException;
 
