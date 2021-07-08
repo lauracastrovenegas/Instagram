@@ -10,9 +10,9 @@
         android:id="@+id/etNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
+        android:layout_below="@+id/tvGoToLogin"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Name"
@@ -68,7 +68,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/tvUploadPicture"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/roundstyle"
         android:text="Take photo" />
@@ -90,9 +90,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPasswordInput"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="15dp"
-        android:text="Upload a profile picture:" />
+        android:text="Upload a profile picture" />
 
     <ImageView
         android:id="@+id/ivProfilePictureUploaded"
@@ -101,7 +101,7 @@
         android:layout_above="@+id/btnSubmitProfile"
         android:layout_below="@+id/btnUploadProfilePic"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
@@ -111,10 +111,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="20dp"
         android:text="Create Profile"
         android:textColor="@color/black"
         android:textSize="24sp" />
@@ -133,10 +133,9 @@
         android:id="@+id/tvGoToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="37dp"
-        android:layout_toEndOf="@+id/tvTitle"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="0dp"
         android:gravity="right"
         android:text="Already have an account? " />
 
@@ -144,14 +143,21 @@
         android:id="@+id/tvLoginLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/tvGoToLogin"
-        android:text="Login"
         android:onClick="goLoginActivity"
+        android:text="Login"
         android:textColor="#2196F3" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/nav_logo_whiteout" />
 
 </RelativeLayout>

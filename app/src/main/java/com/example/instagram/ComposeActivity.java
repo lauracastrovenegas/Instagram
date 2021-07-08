@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,11 +38,12 @@ public class ComposeActivity extends AppCompatActivity {
     public static final String CAMERA_FAILURE = "Picture wasn't taken!";
     public static final String SAVING_ERROR = "Error while saving";
 
-    private EditText etDescription;
-    private Button btnCapture;
-    private ImageView ivPostImage;
-    private Button btnSubmit;
-    private File photoFile;
+    EditText etDescription;
+    Button btnCapture;
+    Button btnClose;
+    Button btnSubmit;
+    ImageView ivPostImage;
+    File photoFile;
     public String photoFileName = "photo.jpg";
 
     @Override
@@ -52,6 +54,7 @@ public class ComposeActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         btnCapture = findViewById(R.id.btnCapture);
         ivPostImage = findViewById(R.id.ivPostImage);
+        btnClose = findViewById(R.id.btnBack);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +80,16 @@ public class ComposeActivity extends AppCompatActivity {
 
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+                goMainActivity();
             }
         });
 
-
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainActivity();
+            }
+        });
     }
 
     private void launchCamera() {
@@ -154,7 +163,7 @@ public class ComposeActivity extends AppCompatActivity {
         });
     }
 
-    public void onHome(View view){
+    public void goMainActivity(){
         finish();
         Intent i = new Intent(ComposeActivity.this, TimelineActivity.class);
         startActivity(i);

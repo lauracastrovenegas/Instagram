@@ -101,7 +101,6 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, WELCOME_STRING, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(SignupActivity.this, SIGN_UP_ISSUE, Toast.LENGTH_LONG).show();
-                    Log.e(TAG, SIGN_UP_ISSUE, e);
                 }
             }
         });
