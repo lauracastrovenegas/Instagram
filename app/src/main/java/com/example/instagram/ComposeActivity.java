@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.instagram.models.Post;
@@ -40,8 +40,8 @@ public class ComposeActivity extends AppCompatActivity {
 
     EditText etDescription;
     Button btnCapture;
-    Button btnClose;
-    Button btnSubmit;
+    ImageView btnClose;
+    TextView tvShare;
     ImageView ivPostImage;
     File photoFile;
     public String photoFileName = "photo.jpg";
@@ -54,33 +54,13 @@ public class ComposeActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         btnCapture = findViewById(R.id.btnCapture);
         ivPostImage = findViewById(R.id.ivPostImage);
-        btnClose = findViewById(R.id.btnBack);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        btnClose = findViewById(R.id.ivBack);
+        tvShare = findViewById(R.id.tvShare);
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                launchCamera();
-            }
-        });
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = etDescription.getText().toString();
-                if (description.isEmpty()){
-                    Toast.makeText(ComposeActivity.this, EMPTY_DESCRIPTION, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (photoFile == null || ivPostImage.getDrawable() == null){
-                    Toast.makeText(ComposeActivity.this, NO_IMAGE, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
-                goMainActivity();
             }
         });
 
@@ -167,5 +147,22 @@ public class ComposeActivity extends AppCompatActivity {
         finish();
         Intent i = new Intent(ComposeActivity.this, TimelineActivity.class);
         startActivity(i);
+    }
+
+    public void onShare(View view){
+        String description = etDescription.getText().toString();
+        if (description.isEmpty()){
+            Toast.makeText(ComposeActivity.this, EMPTY_DESCRIPTION, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (photoFile == null || ivPostImage.getDrawable() == null){
+            Toast.makeText(ComposeActivity.this, NO_IMAGE, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        savePost(description, currentUser, photoFile);
+        goMainActivity();
     }
 }

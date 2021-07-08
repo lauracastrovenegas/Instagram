@@ -6,36 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.instagram.TimelineActivity">
 
-    <Button
-        android:id="@+id/btnLogout"
+    <include
+        android:id="@+id/activity_tool"
+        layout="@layout/toolbar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_toEndOf="@+id/btnNewPost"
-        android:onClick="onLogout"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnNewPost"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:onClick="onCreateNewPost"
-        android:text="Create New Post" />
+        android:layout_height="wrap_content"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btnNewPost"
+        android:layout_below="@+id/activity_tool"
         android:layout_marginTop="0dp">
 
         <androidx.recyclerview.widget.RecyclerView

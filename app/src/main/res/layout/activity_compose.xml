@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="33dp"
-        android:layout_height="31dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/ic_vector_close"
-        android:backgroundTint="@color/purple_700"
-        android:foregroundGravity="center"
-        app:srcCompat="@drawable/ic_vector_close" />
-
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
@@ -57,21 +44,9 @@
         android:layout_marginEnd="20dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/roundstyle"
-        android:text="POST" />
-
     <TextView
         android:id="@+id/tvComposeTitle"
-        android:layout_width="match_parent"
+        android:layout_width="391dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
@@ -82,5 +57,30 @@
         android:text="New Post"
         android:textColor="@color/black"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvShare"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:onClick="onShare"
+        android:text="Share"
+        android:textColor="@color/purple_500"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/ic_vector_close" />
 
 </RelativeLayout>
