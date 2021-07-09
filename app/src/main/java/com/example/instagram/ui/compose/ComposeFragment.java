@@ -49,7 +49,6 @@ public class ComposeFragment extends Fragment {
 
     EditText etDescription;
     Button btnCapture;
-    ImageView btnClose;
     TextView tvShare;
     ImageView ivPostImage;
     File photoFile;
@@ -63,16 +62,7 @@ public class ComposeFragment extends Fragment {
         etDescription = view.findViewById(R.id.etDescription);
         btnCapture = view.findViewById(R.id.btnCapture);
         ivPostImage = view.findViewById(R.id.ivPostImage);
-        btnClose = view.findViewById(R.id.ivBack);
         tvShare = view.findViewById(R.id.tvShare);
-
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goMainActivity();
-            }
-        });
 
         tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
