@@ -1,18 +1,31 @@
-package com.example.instagram;
+package com.example.instagram.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import androidx.appcompat.widget.Toolbar;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.instagram.LoginActivity;
+import com.example.instagram.MainActivity;
+import com.example.instagram.R;
+import com.example.instagram.TimelineActivity;
 import com.example.instagram.adapters.PostAdapter;
+import com.example.instagram.databinding.FragmentHomeBinding;
 import com.example.instagram.models.Post;
+import com.example.instagram.ui.compose.ComposeFragment;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -21,7 +34,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimelineActivity extends AppCompatActivity {
+public class HomeFragment extends Fragment {
 
     public static final String TAG = "TimelineActivity";
     public static final int POST_LIMIT = 20;
@@ -33,23 +46,24 @@ public class TimelineActivity extends AppCompatActivity {
     PostAdapter adapter;
     List<Post> posts;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+    public HomeFragment(){}
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         posts = new ArrayList<>();
 
-        adapter = new PostAdapter(this, posts);
+        adapter = new PostAdapter(getActivity(), posts);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        rvTimeline = findViewById(R.id.rvTimeline);
+        rvTimeline = view.findViewById(R.id.rvTimeline);
         rvTimeline.setLayoutManager(linearLayoutManager);
         rvTimeline.setAdapter(adapter);
 
         // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -68,6 +82,8 @@ public class TimelineActivity extends AppCompatActivity {
 
 
         queryPosts();
+
+        return view;
     }
 
     private void queryPosts() {
@@ -76,7 +92,7 @@ public class TimelineActivity extends AppCompatActivity {
         query.setLimit(POST_LIMIT);
         query.addDescendingOrder(DESCENDING_ORDER_KEY);
         query.findInBackground(new FindCallback<Post>() {
-            
+
             @Override
             public void done(List<Post> allPosts, ParseException e) {
                 if (e != null){
@@ -94,15 +110,31 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-    public void onCreateNewPost(View view){
-        Intent i = new Intent(this, ComposeActivity.class);
+    /*public void onCreateNewPost(View view){
+        Intent i = new Intent(this, ComposeFragment.class);
         startActivity(i);
-    }
+    }*/
 
-    public void onLogout(View view){
-        ParseUser.logOut();
-        finish();
-        Intent i = new Intent(TimelineActivity.this, LoginActivity.class);
-        startActivity(i);
+    /*@Override
+    public void onClick(View view) {
+        Fragment fragment = null;
+        switch (view.getId()) {
+            case R.id.ivGoCompose:
+                fragment = new ComposeFragment();
+                replaceFragment(fragment);
+                break;
+
+            case R.id.tvLogout:
+                fragment = new PhoneBookFragment();
+                replaceFragment(fragment);
+                break;
+        }
+    }*/
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

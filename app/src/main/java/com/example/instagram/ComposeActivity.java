@@ -139,14 +139,15 @@ public class ComposeActivity extends AppCompatActivity {
                 Log.i(TAG, SUCCESS_MSG);
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+                goMainActivity();
             }
         });
     }
 
     public void goMainActivity(){
-        finish();
         Intent i = new Intent(ComposeActivity.this, TimelineActivity.class);
         startActivity(i);
+        finish();
     }
 
     public void onShare(View view){
@@ -163,6 +164,5 @@ public class ComposeActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         savePost(description, currentUser, photoFile);
-        goMainActivity();
     }
 }
