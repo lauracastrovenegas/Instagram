@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/instagram_home_outline_24"
-        android:title="@string/title_home" />
+        android:icon="@drawable/home_icon_selector"
+        android:title="@string/title_home"/>
 
     <item
         android:id="@+id/navigation_compose"
-        android:icon="@drawable/instagram_new_post_outline_24"
+        android:icon="@drawable/compose_icon_selector"
         android:title="@string/title_compose" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/instagram_user_outline_24"
+        android:icon="@drawable/profile_icon_selector"
         android:title="@string/title_profile" />
 
 </menu>
