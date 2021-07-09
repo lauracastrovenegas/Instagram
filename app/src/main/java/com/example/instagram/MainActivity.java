@@ -1,9 +1,18 @@
 package com.example.instagram;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.instagram.ui.compose.ComposeFragment;
 import com.example.instagram.ui.home.HomeFragment;
@@ -11,7 +20,9 @@ import com.example.instagram.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
@@ -22,7 +33,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.instagram.databinding.ActivityMainBinding;
 import com.parse.ParseUser;
 
-import org.jetbrains.annotations.NotNull;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
     }
 
     public void onLogout(View view){
@@ -52,5 +64,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(i);
     }
-
 }
