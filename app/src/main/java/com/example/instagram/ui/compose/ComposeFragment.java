@@ -23,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.instagram.DeviceDimensionsHelper;
 import com.example.instagram.R;
 import com.example.instagram.models.Post;
 import com.example.instagram.ui.home.HomeFragment;
@@ -163,8 +165,10 @@ public class ComposeFragment extends Fragment {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
+                int screenWidth = DeviceDimensionsHelper.getDisplayWidth(getContext());
+                Bitmap resizedBitmap = Bitmap.createBitmap(takenImage, 0, 0, screenWidth, screenWidth);
                 // Load the taken image into a preview
-                ivPostImage.setImageBitmap(takenImage);
+                ivPostImage.setImageBitmap(resizedBitmap);
             } else { // Result was a failure
                 Toast.makeText(getContext(), CAMERA_FAILURE, Toast.LENGTH_SHORT).show();
             }

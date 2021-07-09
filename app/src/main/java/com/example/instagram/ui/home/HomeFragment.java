@@ -110,27 +110,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    /*public void onCreateNewPost(View view){
-        Intent i = new Intent(this, ComposeFragment.class);
-        startActivity(i);
-    }*/
-
-    /*@Override
-    public void onClick(View view) {
-        Fragment fragment = null;
-        switch (view.getId()) {
-            case R.id.ivGoCompose:
-                fragment = new ComposeFragment();
-                replaceFragment(fragment);
-                break;
-
-            case R.id.tvLogout:
-                fragment = new PhoneBookFragment();
-                replaceFragment(fragment);
-                break;
-        }
-    }*/
-
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);

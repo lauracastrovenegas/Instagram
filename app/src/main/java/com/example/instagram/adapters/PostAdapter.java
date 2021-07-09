@@ -115,4 +115,32 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
 
     }
+
+    public class PreviewViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView ivPostPreview;
+
+        public PreviewViewHolder(@NonNull @NotNull View itemView) {
+            super(itemView);
+
+            ivPostPreview = itemView.findViewById(R.id.ivPostPreview);
+        }
+
+        public void bind(Post post) {
+
+            ParseFile image = post.getImage();
+
+            if (image != null) {
+                try {
+                    Glide.with(context)
+                            .load(image.getUrl())
+                            .centerCrop()
+                            .into(ivPostPreview);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 }
