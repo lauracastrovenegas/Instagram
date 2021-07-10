@@ -155,10 +155,9 @@ public class ComposeFragment extends Fragment {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
-                int screenWidth = DeviceDimensionsHelper.getDisplayWidth(getContext());
-                Bitmap resizedBitmap = Bitmap.createBitmap(takenImage, 0, 0, screenWidth, screenWidth);
+
                 // Load the taken image into a preview
-                ivPostImage.setImageBitmap(resizedBitmap);
+                ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
                 Toast.makeText(getContext(), CAMERA_FAILURE, Toast.LENGTH_SHORT).show();
             }
