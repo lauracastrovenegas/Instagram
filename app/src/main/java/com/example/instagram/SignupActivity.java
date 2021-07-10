@@ -47,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
     TextView tvLogin;
     Button btnSignup;
     Button btnTakePhoto;
-    //Button btnSelectPhoto;
+    Button btnSelectPhoto;
     EditText etName;
     EditText etEmail;
     EditText etUsername;
@@ -61,13 +61,13 @@ public class SignupActivity extends AppCompatActivity {
 
         tvLogin = findViewById(R.id.tvGoToLogin);
         btnSignup = findViewById(R.id.btnSubmitProfile);
-        btnTakePhoto = findViewById(R.id.btnUploadProfilePic);
+        //btnTakePhoto = findViewById(R.id.btnUploadProfilePic);
         //btnSelectPhoto = findViewById(R.id.btnUploadProfilePic2);
         etName = findViewById(R.id.etNameInput);
         etEmail = findViewById(R.id.etEmailInput);
         etUsername = findViewById(R.id.etUsernameInput);
         etPassword = findViewById(R.id.etPasswordInput);
-        ivProfilePicture = findViewById(R.id.ivProfilePictureUploaded);
+        //ivProfilePicture = findViewById(R.id.ivProfilePictureUploaded);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +76,12 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
+        /*btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchCamera();
             }
-        });
+        });*/
     }
 
     private void signupUser(String name, String email, String username, String password, File image){
@@ -91,7 +91,7 @@ public class SignupActivity extends AppCompatActivity {
         user.setUsername(username);
         user.setPassword(password);
         user.put(KEY_NAME, name);
-        //user.setImage(image);
+        //user.put('image');
 
         user.signUpInBackground(new SignUpCallback() {
             @Override

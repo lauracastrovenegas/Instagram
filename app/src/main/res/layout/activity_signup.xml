@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="131dp" />
 
-    <Button
+    <!--<Button
         android:id="@+id/btnUploadProfilePic"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -73,7 +73,7 @@
         android:background="@drawable/roundstyle"
         android:text="Take photo" />
 
-    <!--<Button
+    <Button
         android:id="@+id/btnUploadProfilePic2"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -84,7 +84,7 @@
         android:background="@drawable/roundstyle"
         android:text="Choose from library" />-->
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tvUploadPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@tools:sample/avatars" />-->
 
     <TextView
         android:id="@+id/tvTitle"

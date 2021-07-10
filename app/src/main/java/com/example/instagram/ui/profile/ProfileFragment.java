@@ -44,6 +44,8 @@ public class ProfileFragment extends Fragment {
     PostPreviewAdapter adapter;
     List<Post> posts;
 
+    ParseUser user;
+
     ImageView ivProfilePicture;
     TextView tvName;
     TextView tvUsername;
@@ -58,6 +60,8 @@ public class ProfileFragment extends Fragment {
 
         adapter = new PostPreviewAdapter(getActivity(), posts);
 
+        user = ParseUser.getCurrentUser();
+
         rvTimeline = view.findViewById(R.id.rvProfileGrid);
         rvTimeline.setLayoutManager(new GridLayoutManager(getContext(), 3));
         rvTimeline.setAdapter(adapter);
@@ -66,10 +70,10 @@ public class ProfileFragment extends Fragment {
         tvName = view.findViewById(R.id.tvProfileName);
         tvUsername = view.findViewById(R.id.tvProfileUsername);
 
-        tvName.setText(ParseUser.getCurrentUser().getString("name"));
-        tvUsername.setText(ParseUser.getCurrentUser().getString("username"));
+        tvName.setText(user.getString("name"));
+        tvUsername.setText(user.getString("username"));
 
-        ParseFile profileImage = ParseUser.getCurrentUser().getParseFile("image");
+        ParseFile profileImage = user.getParseFile("image");
         if (profileImage != null) {
             Glide.with(getContext())
                     .load(profileImage.getUrl())
