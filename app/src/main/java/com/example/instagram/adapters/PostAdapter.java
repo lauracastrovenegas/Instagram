@@ -1,6 +1,8 @@
 package com.example.instagram.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.instagram.MainActivity;
 import com.example.instagram.R;
 import com.example.instagram.DeviceDimensionsHelper;
 import com.example.instagram.models.Post;
+import com.example.instagram.ui.DetailFragment;
+import com.example.instagram.ui.home.HomeFragment;
 import com.parse.ParseFile;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -27,7 +36,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     Context context;
     List<Post> posts;
 
-    public PostAdapter (Context context, List<Post> posts){
+    public PostAdapter(Context context, List<Post> posts) {
         this.context = context;
         this.posts = posts;
     }
@@ -54,12 +63,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     // Clean all elements of the recycler
     public void clear() {
         posts.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Post> list) {
-        posts.addAll(list);
         notifyDataSetChanged();
     }
 
@@ -113,34 +116,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         .into(ivProfilePicture);
             }
         }
-
-    }
-
-    public class PreviewViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView ivPostPreview;
-
-        public PreviewViewHolder(@NonNull @NotNull View itemView) {
-            super(itemView);
-
-            ivPostPreview = itemView.findViewById(R.id.ivPostPreview);
-        }
-
-        public void bind(Post post) {
-
-            ParseFile image = post.getImage();
-
-            if (image != null) {
-                try {
-                    Glide.with(context)
-                            .load(image.getUrl())
-                            .centerCrop()
-                            .into(ivPostPreview);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
     }
 }
+

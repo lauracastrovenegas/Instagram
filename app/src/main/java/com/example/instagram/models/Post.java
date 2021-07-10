@@ -8,6 +8,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.parceler.Parcel;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -21,7 +23,6 @@ public class Post extends ParseObject {
     public static final String KEY_PROFILE_IMAGE = "profilePicture";
 
     private static final String DATE_FORMAT = "MMMM dd, yyyy";
-
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);

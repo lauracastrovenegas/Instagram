@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.instagram.ItemClickSupport;
 import com.example.instagram.LoginActivity;
 import com.example.instagram.MainActivity;
 import com.example.instagram.R;
@@ -25,6 +26,7 @@ import com.example.instagram.TimelineActivity;
 import com.example.instagram.adapters.PostAdapter;
 import com.example.instagram.databinding.FragmentHomeBinding;
 import com.example.instagram.models.Post;
+import com.example.instagram.ui.DetailFragment;
 import com.example.instagram.ui.compose.ComposeFragment;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -40,6 +42,7 @@ public class HomeFragment extends Fragment {
     public static final int POST_LIMIT = 20;
     public static final String DESCENDING_ORDER_KEY = "createdAt";
     public static final String QUERY_ERROR = "Error getting posts";
+    public static final String KEY = "detail_post";
 
     private SwipeRefreshLayout swipeContainer;
     RecyclerView rvTimeline;
@@ -80,10 +83,35 @@ public class HomeFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
         queryPosts();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Leveraging ItemClickSupport decorator to handle clicks on items in our recyclerView
+        ItemClickSupport.addTo(rvTimeline).setOnItemClickListener(
+                new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Post post = posts.get(position);
+                        String post_id = post.getObjectId();
+
+                        Fragment fragment = new DetailFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(KEY, post_id);
+                        fragment.setArguments(bundle);
+
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.nav_host_fragment_activity_main, fragment)
+                                .addToBackStack(null).commit();
+                    }
+                }
+        );
     }
 
     private void queryPosts() {
@@ -108,12 +136,5 @@ public class HomeFragment extends Fragment {
                 swipeContainer.setRefreshing(false);
             }
         });
-    }
-
-    public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 }

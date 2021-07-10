@@ -10,12 +10,6 @@
     android:layout_marginEnd="0dp"
     android:layout_marginBottom="0dp">
 
-    <!--<View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />-->
-
     <ImageView
         android:id="@+id/ivProfilePicture"
         android:layout_width="wrap_content"
@@ -114,13 +108,5 @@
             android:layout_toEndOf="@+id/ivCommentIcon"
             app:srcCompat="@drawable/direct" />
     </RelativeLayout>
-
-    <!--<View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/tvDescription"
-        android:layout_marginTop="0dp"
-        android:background="?android:attr/listDivider" />-->
 
 </RelativeLayout>
