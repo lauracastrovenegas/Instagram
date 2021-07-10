@@ -46,7 +46,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+Log in User flow:
 
+![App Portrait Walkthrough](screenshots/Instagram_walkthrough_part1.gif)
+
+Sign up User flow:
+
+![App Landscape Walkthrough](screenshots/instagram_walkthrough_part2.gif)
 
 ## Credits
 
